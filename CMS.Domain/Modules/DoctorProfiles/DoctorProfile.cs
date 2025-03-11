@@ -3,6 +3,7 @@ using CMS.Domain.Modules.Qualifications;
 using CMS.Domain.Modules.TimeSlots;
 using CMS.Domain.Modules.Users;
 using CSharpFunctionalExtensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CMS.Domain.Modules.DoctorProfiles;
 
@@ -12,6 +13,7 @@ public class DoctorProfile : Entity
 
     public SpecializationType SpecializationType { get; set; }
 
+    [MaxLength(DoctorProfileAttributeConstants.BioMaxLength)]
     public required string Bio { get; set; }
 
     public User? User { get; set; }

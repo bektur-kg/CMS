@@ -2,15 +2,15 @@
 using CMS.Domain.Modules.Diagnoses;
 using CMS.Domain.Modules.Medications;
 using CSharpFunctionalExtensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CMS.Domain.Modules.Visits;
 
 public class Visit : Entity
 {
-    public long AppointmentId { get; set; }
+    public DateTime VisitedAt { get; set; }
 
-    public DateTime VisitDate { get; set; }
-
+    [MaxLength(VisitAttributeConstants.NotesMaxLength)]
     public required string Notes { get; set; }
 
     public Appointment? Appointment { get; set; }

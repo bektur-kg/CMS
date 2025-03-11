@@ -1,4 +1,5 @@
-﻿using CSharpFunctionalExtensions;
+﻿using CMS.Domain.Modules.DoctorProfiles;
+using CSharpFunctionalExtensions;
 
 namespace CMS.Domain.Modules.Qualifications;
 
@@ -19,4 +20,6 @@ public class Qualification : Entity
     public required string Level { get; set; }
 
     public long DoctorProfileId { get; set; }
+
+    public DoctorProfile? DoctorProfile { get; set; }
 }
