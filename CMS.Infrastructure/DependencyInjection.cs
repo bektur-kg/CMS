@@ -1,4 +1,8 @@
-﻿using CMS.Infrastructure.DbContexts;
+﻿using CMS.Application.Features.Users;
+using CMS.Application.Services;
+using CMS.Infrastructure.DbContexts;
+using CMS.Infrastructure.Modules.Users;
+using CMS.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +19,11 @@ public static class DependencyInjection
         {
             options.UseSqlServer(connectionString);
         });
+
+        services.AddTransient<IPasswordManager, PasswordManager>();
+        services.AddTransient<IJwtProvider, JwtProvider>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
