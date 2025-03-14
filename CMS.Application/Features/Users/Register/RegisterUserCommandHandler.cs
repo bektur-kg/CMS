@@ -1,6 +1,11 @@
 ﻿using AutoMapper;
-using CMS.Application.Abstractions;
-using CMS.Application.Services;
+using CMS.Application.Abstractions.Authentication;
+using CMS.Application.Abstractions.Data;
+using CMS.Application.Abstractions.Messaging;
+using CMS.Application.Features.DoctorProfiles;
+using CMS.Application.Features.MedicalCards;
+using CMS.Domain.Modules.DoctorProfiles;
+using CMS.Domain.Modules.MedicalCards;
 using CMS.Domain.Modules.Users;
 using CSharpFunctionalExtensions;
 
@@ -10,6 +15,8 @@ internal sealed class RegisterUserCommandHandler
     (
         IUserRepository userRepository,
         IPasswordManager passwordManager,
+        IDoctorProfileRepository doctorProfileRepository,
+        IMedicalCardRepository medicalCardRepository,
         IMapper mapper,
         IUnitOfWork unitOfWork
     ) 
@@ -23,6 +30,20 @@ internal sealed class RegisterUserCommandHandler
 
         user.PasswordHash = passwordHash;
         user.CreatedAt = DateTime.UtcNow;
+
+        if(request.Data.UserType == UserType.Doctor)
+        {
+            var doctorProfile = new DoctorProfile { Bio = string.Empty };
+
+            doctorProfileRepository.Add(doctorProfile);
+        }
+
+        if (request.Data.UserType == UserType.Patient)
+        {
+            var medicalCard = new MedicalCard { PatientNote = string.Empty };
+
+            medicalCardRepository.Add(medicalCard);
+        }
 
         userRepository.Add(user);
         await unitOfWork.SaveChangesAsync(cancellationToken);

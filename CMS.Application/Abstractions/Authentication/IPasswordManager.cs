@@ -1,4 +1,4 @@
-﻿namespace CMS.Application.Services;
+﻿namespace CMS.Application.Abstractions.Authentication;
 
 public interface IPasswordManager
 {

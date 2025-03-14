@@ -36,10 +36,10 @@ public class RegisterUserValidator : AbstractValidator<RegisterUserRequest>
             .MaximumLength(UserAttributeConstants.EmailMaxLength)
                 .WithMessage($"Email has to be less than {UserAttributeConstants.EmailMaxLength} characters")
             .EmailAddress().WithMessage("Invalid email format")
-            .MustAsync(BeUniqueEmail).WithMessage("Email is already taken");
+            .MustAsync(BeUniqueEmailAsync).WithMessage("Email is already taken");
     }
 
-    private async Task<bool> BeUniqueEmail(string email, CancellationToken cancellationToken)
+    private async Task<bool> BeUniqueEmailAsync(string email, CancellationToken cancellationToken)
     {
         return !await _userRepository.DoesEmailExistAsync(email, cancellationToken);
     }

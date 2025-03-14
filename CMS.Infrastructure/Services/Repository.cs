@@ -1,4 +1,4 @@
-﻿using CMS.Application.Abstractions;
+﻿using CMS.Application.Abstractions.Data;
 using CMS.Infrastructure.DbContexts;
 using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -9,20 +9,20 @@ public abstract class Repository<TEntity>(AppDbContext dbContext) : IRepository<
 {
     protected AppDbContext DbContext = dbContext;
 
-    public Task<List<TEntity>> GetAllAsync() => DbContext
+    public Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken) => DbContext
         .Set<TEntity>()
         .AsQueryable()
-        .ToListAsync();
+        .ToListAsync(cancellationToken);
 
-    public Task<TEntity?> GetByIdAsync(long id) => DbContext
+    public Task<TEntity?> GetByIdAsync(long id, CancellationToken cancellationToken) => DbContext
         .Set<TEntity>()
         .AsQueryable()
-        .FirstOrDefaultAsync(entity => entity.Id == id);
+        .FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
 
-    public Task<TEntity?> GetByIdWithNoTrackingAsync(long id) => DbContext
+    public Task<TEntity?> GetByIdWithNoTrackingAsync(long id, CancellationToken cancellationToken) => DbContext
         .Set<TEntity>()
         .AsNoTracking()
-        .FirstOrDefaultAsync(entity => entity.Id == id);
+        .FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
 
     public void Add(TEntity entity) => DbContext.Add(entity);
 

@@ -1,5 +1,4 @@
-﻿using CMS.Domain.Modules.Reviews;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace CMS.Domain.Modules.Users;

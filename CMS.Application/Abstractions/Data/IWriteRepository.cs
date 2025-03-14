@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 
-namespace CMS.Application.Abstractions;
+namespace CMS.Application.Abstractions.Data;
 
 public interface IWriteRepository<TEntity> where TEntity : Entity
 {

@@ -1,4 +1,4 @@
-﻿using CMS.Application.Services;
+﻿using CMS.Application.Abstractions.Authentication;
 using CMS.Domain.Modules.Users;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

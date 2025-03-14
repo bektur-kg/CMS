@@ -1,4 +1,4 @@
-﻿using CMS.Application.Services;
+﻿using CMS.Application.Abstractions.Authentication;
 
 namespace CMS.Infrastructure.Modules.Users;
 

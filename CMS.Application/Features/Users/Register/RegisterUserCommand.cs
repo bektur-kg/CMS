@@ -1,4 +1,4 @@
-﻿using CMS.Application.Abstractions;
+﻿using CMS.Application.Abstractions.Messaging;
 using CSharpFunctionalExtensions;
 
 namespace CMS.Application.Features.Users.Register;

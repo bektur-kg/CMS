@@ -1,6 +1,6 @@
 ﻿using CMS.Domain.Modules.Users;
 
-namespace CMS.Application.Services;
+namespace CMS.Application.Abstractions.Authentication;
 
 public interface IJwtProvider
 {

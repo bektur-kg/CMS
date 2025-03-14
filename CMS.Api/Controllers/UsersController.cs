@@ -1,10 +1,8 @@
-﻿using CMS.Application.Features.Users.Register;
-using CSharpFunctionalExtensions;
+﻿using CMS.Application.Features.Users.Login;
+using CMS.Application.Features.Users.Register;
 using FluentValidation;
 using MediatR;
-using System.Web.Http;
-using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CMS.Api.Controllers;
 
@@ -16,7 +14,9 @@ public class UsersController(ISender sender) : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterUserRequest request, IValidator<RegisterUserRequest> validator,
+    public async Task<IActionResult> Register(
+        [FromBody] RegisterUserRequest request,
+        [FromServices] IValidator<RegisterUserRequest> validator,
         CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
@@ -27,6 +27,24 @@ public class UsersController(ISender sender) : ControllerBase
 
         var result = await _sender.Send(command, cancellationToken);
 
-        return result.IsSuccess ? Ok() : BadRequest(result.Error);
+        return result.IsSuccess ? Created() : BadRequest(result.Error);
+    }
+
+    [AllowAnonymous]
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(
+        [FromBody] LoginUserRequest request,
+        [FromServices] IValidator<LoginUserRequest> validator,
+        CancellationToken cancellationToken)
+    {
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+
+        var query = new LoginUserQuery(request);
+
+        var result = await _sender.Send(query, cancellationToken);
+
+        return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
 }

@@ -1,4 +1,4 @@
-﻿using CMS.Application.Services;
+﻿using CMS.Application.Abstractions.Data;
 using CMS.Infrastructure.DbContexts;
 
 namespace CMS.Infrastructure.Services;

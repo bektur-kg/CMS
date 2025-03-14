@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace CMS.Application.Abstractions;
+namespace CMS.Application.Abstractions.Messaging;
 
 public interface ICommandHandler<TCommand, TResponse>
     : IRequestHandler<TCommand, TResponse>
