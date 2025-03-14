@@ -31,21 +31,28 @@ internal sealed class RegisterUserCommandHandler
         user.PasswordHash = passwordHash;
         user.CreatedAt = DateTime.UtcNow;
 
-        if(request.Data.UserType == UserType.Doctor)
+        if (request.Data.UserType == UserType.Doctor)
         {
-            var doctorProfile = new DoctorProfile { Bio = string.Empty };
+            var doctorProfile = new DoctorProfile
+            { 
+                Bio = string.Empty,
+                User = user,
+            };
 
             doctorProfileRepository.Add(doctorProfile);
         }
 
         if (request.Data.UserType == UserType.Patient)
         {
-            var medicalCard = new MedicalCard { PatientNote = string.Empty };
+            var medicalCard = new MedicalCard
+            {
+                PatientNote = string.Empty, 
+                User = user
+            };
 
             medicalCardRepository.Add(medicalCard);
         }
 
-        userRepository.Add(user);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return UnitResult.Success<Error>();
