@@ -2,6 +2,7 @@
 
 public enum SpecializationType
 {
+    None = 0,
     GeneralPractitioner = 1,
     Cardiologist = 2,
     Dermatologist = 3,

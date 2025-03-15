@@ -5,6 +5,7 @@ using CMS.Infrastructure.Services;
 
 namespace CMS.Infrastructure.Modules.MedicalCards;
 
-internal sealed class MedicalCardRepository(AppDbContext dbContext) : Repository<MedicalCard>(dbContext), IMedicalCardRepository
+internal sealed class MedicalCardRepository(AppDbContext dbContext) 
+    : Repository<MedicalCard>(dbContext), IMedicalCardRepository
 {
 }

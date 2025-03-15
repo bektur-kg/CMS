@@ -27,7 +27,7 @@ public class RegisterUserValidator : AbstractValidator<RegisterUserRequest>
                 .WithMessage($"LastName has to be less than {UserAttributeConstants.LastNameMaxLength} characters");
 
         RuleFor(u => u.Patronymic)
-            .NotEmpty().WithMessage("Patronymicis required")
+            .NotEmpty().WithMessage("Patronymic is required")
             .MaximumLength(UserAttributeConstants.PatronymicMaxLength)
                 .WithMessage($"Patronymic has to be less than {UserAttributeConstants.PatronymicMaxLength} characters");
 
@@ -37,6 +37,10 @@ public class RegisterUserValidator : AbstractValidator<RegisterUserRequest>
                 .WithMessage($"Email has to be less than {UserAttributeConstants.EmailMaxLength} characters")
             .EmailAddress().WithMessage("Invalid email format")
             .MustAsync(BeUniqueEmailAsync).WithMessage("Email is already taken");
+
+        RuleFor(u => u.UserType)
+            .NotEmpty().WithMessage("User type is required")
+            .IsInEnum().WithMessage("User type must be a valid value");
     }
 
     private async Task<bool> BeUniqueEmailAsync(string email, CancellationToken cancellationToken)

@@ -2,10 +2,12 @@
 using CMS.Application.Abstractions.Data;
 using CMS.Application.Features.DoctorProfiles;
 using CMS.Application.Features.MedicalCards;
+using CMS.Application.Features.Qualifications;
 using CMS.Application.Features.Users;
 using CMS.Infrastructure.DbContexts;
 using CMS.Infrastructure.Modules.DoctorProfiles;
 using CMS.Infrastructure.Modules.MedicalCards;
+using CMS.Infrastructure.Modules.Qualifications;
 using CMS.Infrastructure.Modules.Users;
 using CMS.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +34,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IDoctorProfileRepository, DoctorProfileRepository>();
         services.AddScoped<IMedicalCardRepository, MedicalCardRepository>();
-        
+        services.AddScoped<IQualificationRepository, QualificationRepository>();
+
         return services;
     }
 }

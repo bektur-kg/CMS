@@ -2,7 +2,8 @@
 
 public enum QualificationType
 {
-    Certification,
-    Education,
-    Skill
+    None = 0,
+    Certification = 1,
+    Education = 2,
+    Skill = 3
 }
