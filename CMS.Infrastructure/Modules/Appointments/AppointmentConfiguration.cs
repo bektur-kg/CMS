@@ -1,4 +1,5 @@
 ﻿using CMS.Domain.Modules.Appointments;
+using CMS.Domain.Modules.TimeSlots;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -29,5 +30,10 @@ internal sealed class AppointmentConfiguration : IEntityTypeConfiguration<Appoin
             .HasOne(a => a.Visit)
             .WithOne(v => v.Appointment)
             .HasForeignKey<Appointment>(a => a.VisitId);
+
+        builder
+            .HasOne(a => a.TimeSlot)
+            .WithOne()
+            .HasForeignKey<Appointment>(a => a.TimeSlotId);
     }
 }

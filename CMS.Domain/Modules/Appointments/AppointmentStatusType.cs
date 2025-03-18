@@ -1,6 +1,6 @@
 ﻿namespace CMS.Domain.Modules.Appointments;
 
-public enum StatusType
+public enum AppointmentStatusType
 {
     Pending,
     Confirmed,

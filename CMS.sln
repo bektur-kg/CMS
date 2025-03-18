@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Domain", "CMS.Domain\CM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Infrastructure", "CMS.Infrastructure\CMS.Infrastructure.csproj", "{50960A53-79B1-4A84-A662-9BC468F901D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C3E3D23A-88F2-4E44-9722-178C682751A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS.Application.UnitTests", "CMS.Application.UnitTests\CMS.Application.UnitTests.csproj", "{396AB114-42E1-4871-B3C7-8122870A752A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +37,15 @@ Global
 		{50960A53-79B1-4A84-A662-9BC468F901D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50960A53-79B1-4A84-A662-9BC468F901D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50960A53-79B1-4A84-A662-9BC468F901D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396AB114-42E1-4871-B3C7-8122870A752A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396AB114-42E1-4871-B3C7-8122870A752A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396AB114-42E1-4871-B3C7-8122870A752A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396AB114-42E1-4871-B3C7-8122870A752A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{396AB114-42E1-4871-B3C7-8122870A752A} = {C3E3D23A-88F2-4E44-9722-178C682751A3}
 	EndGlobalSection
 EndGlobal

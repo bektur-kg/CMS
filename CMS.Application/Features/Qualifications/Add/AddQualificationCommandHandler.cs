@@ -9,7 +9,7 @@ using CSharpFunctionalExtensions;
 
 namespace CMS.Application.Features.Qualifications.Add;
 
-internal sealed class AddQualificationCommandHandler
+public sealed class AddQualificationCommandHandler
     (
         IDoctorProfileRepository doctorProfileRepository,
         IUserContext userContext,

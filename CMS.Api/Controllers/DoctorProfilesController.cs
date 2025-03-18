@@ -33,7 +33,7 @@ public class DoctorProfilesController(ISender sender) : ControllerBase
 
     [Authorize]
     [HttpGet("doctor-profiles")]
-    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken) // todo: add filtering, sorting and pagination
     {
         var query = new GetAllDoctorProfilesQuery();
 

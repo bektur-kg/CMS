@@ -1,5 +1,6 @@
 ﻿using CMS.Domain.Modules.DoctorProfiles;
 using CMS.Domain.Modules.MedicalCards;
+using CMS.Domain.Modules.TimeSlots;
 using CMS.Domain.Modules.Visits;
 using CSharpFunctionalExtensions;
 using System.ComponentModel.DataAnnotations;
@@ -12,11 +13,11 @@ public class Appointment : Entity
 
     public long? DoctorProfileId { get; set; }
 
-    public long TimeSlotId { get; set; }
+    public long? TimeSlotId { get; set; }
 
     public long? VisitId { get; set; }
 
-    public StatusType StatusType { get; set; }
+    public AppointmentStatusType AppointmentStatusType { get; set; }
 
     [MaxLength(AppointmentAttributeConstants.ReasonMaxLength)]
     public required string Reason { get; set; }
@@ -26,4 +27,6 @@ public class Appointment : Entity
     public DoctorProfile? DoctorProfile { get; set; }
 
     public Visit? Visit { get; set; }
+
+    public TimeSlot? TimeSlot { get; set; }
 }

@@ -13,6 +13,8 @@ public class Visit : Entity
     [MaxLength(VisitAttributeConstants.NotesMaxLength)]
     public required string Notes { get; set; }
 
+    public long AppointmentId { get; set; }
+
     public Appointment? Appointment { get; set; }
 
     public List<Diagnosis> Diagnoses { get; set; } = [];

@@ -4,6 +4,7 @@ using CMS.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250316154140_Appointment_Fix_AppointmentStatusTypeName")]
+    partial class Appointment_Fix_AppointmentStatusTypeName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace CMS.Infrastructure.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<long?>("TimeSlotId")
+                    b.Property<long>("TimeSlotId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("VisitId")
@@ -55,10 +58,6 @@ namespace CMS.Infrastructure.Migrations
                     b.HasIndex("DoctorProfileId");
 
                     b.HasIndex("MedicalCardId");
-
-                    b.HasIndex("TimeSlotId")
-                        .IsUnique()
-                        .HasFilter("[TimeSlotId] IS NOT NULL");
 
                     b.HasIndex("VisitId")
                         .IsUnique()
@@ -347,9 +346,6 @@ namespace CMS.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("AppointmentId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasMaxLength(400)
@@ -375,10 +371,6 @@ namespace CMS.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CMS.Domain.Modules.TimeSlots.TimeSlot", "TimeSlot")
-                        .WithOne()
-                        .HasForeignKey("CMS.Domain.Modules.Appointments.Appointment", "TimeSlotId");
-
                     b.HasOne("CMS.Domain.Modules.Visits.Visit", "Visit")
                         .WithOne("Appointment")
                         .HasForeignKey("CMS.Domain.Modules.Appointments.Appointment", "VisitId");
@@ -386,8 +378,6 @@ namespace CMS.Infrastructure.Migrations
                     b.Navigation("DoctorProfile");
 
                     b.Navigation("MedicalCard");
-
-                    b.Navigation("TimeSlot");
 
                     b.Navigation("Visit");
                 });
